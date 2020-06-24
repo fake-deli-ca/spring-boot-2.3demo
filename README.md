@@ -1,6 +1,7 @@
 # spring-boot-2.3demo
 
 ref. https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.3-Release-Notes
+
 ref. https://spring.io/blog/2020/05/15/spring-boot-2-3-0-available-now
 
 ## build
@@ -13,4 +14,11 @@ ref. https://spring.io/blog/2020/05/15/spring-boot-2-3-0-available-now
 ./gradlew bootRun
 
 ## for AWS CodeBuild
+SpringBootDemoApp → CodeBuild → ECR
+
 ref. buildspec.yaml
+
+## Access
+https://(FQDN)/hello
+
+`hello world!`
