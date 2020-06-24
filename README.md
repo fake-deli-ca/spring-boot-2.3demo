@@ -22,3 +22,7 @@ ref. buildspec.yaml
 https://(FQDN)/hello
 
 `hello world!`
+
+## Optional 
+### Code Formatter
+./gradlew spotlessApply
