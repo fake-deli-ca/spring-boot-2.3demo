@@ -1,0 +1,39 @@
+version: 0.2
+
+env:
+  variables:
+    IMAGE_NAME: "spring-boot-demo"
+    # FIXME:
+    AWS_ACCOUNT: "XXXXXXXXXXX"
+    # TODO: 本来はgradleのartifactから取ってくる必要がある。
+    # See Also https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/gradle-plugin/reference/html/#build-image-customization
+    IMAGE_REPO: "docker.io/library/spring-boot-demo"
+phases:
+  install:
+    commands:
+      - chmod +x ./gradlew
+      - touch gradle.properties
+      - |
+        cat <<EOL >> gradle.properties
+        org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m
+        EOL
+        
+      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay&
+      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+
+  pre_build:
+    commands:
+      - echo build start on `date`
+      - $(aws ecr get-login --no-include-email)
+      
+  build:
+    commands:
+      - ./gradlew bootBuildImage --imageName=${IMAGE_NAME}
+      - docker tag ${IMAGE_REPO}:latest ${AWS_ACCOUNT}.dkr.ecr.ap-northeast-1.amazonaws.com/${IMAGE_REPO}:latest
+  post_build:
+    commands:
+      - docker push ${AWS_ACCOUNT}.dkr.ecr.ap-northeast-1.amazonaws.com/${IMAGE_REPO}:latest
+cache:
+  paths:
+    - /root/.gradle/caches/**/*
+    - /root/.gradle/wrapper/**/*
