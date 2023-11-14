@@ -32,8 +32,8 @@ jobs:
     - name: Send Metrix
       uses: yuya-takeyama/github-actions-metrics-to-datadog-action@v0.6.0
       with:
-          github-token: ${{ secrets.OWNER_GITHUB_TOKEN }}
+          # github-token: ${{ secrets.OWNER_GITHUB_TOKEN }}
           datadog-api-key: ${{ secrets.DATADOG_API_KEY }}
           enable-workflow-metrics: 'true'
-          enable-billing-metrics: 'true'
-          enable-repository-workflows-billing-metrics: 'true'
+          # enable-billing-metrics: 'true'
+          # enable-repository-workflows-billing-metrics: 'true'
