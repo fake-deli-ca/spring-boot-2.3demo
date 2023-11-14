@@ -47,3 +47,4 @@ jobs:
         datadog-site: "ap1.datadoghq.com"
         collect-job-metrics: true
         collect-step-metrics: true
+        send-pull-request-labels: true
