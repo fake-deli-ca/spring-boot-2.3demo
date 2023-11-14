@@ -24,9 +24,21 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-
-    - uses: int128/datadog-actions-metrics@v1
+    - name: Build count
+      uses: masci/datadog@v1
       with:
+        api-key: ${{ secrets.DATADOG_API_KEY }}
+        metrics: |
+          - type: "count"
+            name: "test.runs.count"
+            value: 1.0
+            host: ${{ github.repository_owner }}
+            tags:
+              - "project:${{ github.repository }}"
+              - "branch:${{ github.head_ref }}"
+
+    #- uses: int128/datadog-actions-metrics@v1
+    #  with:
         # create an API key in https://docs.datadoghq.com/account_management/api-app-keys/
-        datadog-api-key: ${{ secrets.DATADOG_API_KEY }}
-        datadog-site: ap1.datadoghq.com
+    #    datadog-api-key: ${{ secrets.DATADOG_API_KEY }}
+    #    datadog-site: ap1.datadoghq.com
