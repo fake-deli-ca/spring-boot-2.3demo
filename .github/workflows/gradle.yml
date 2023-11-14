@@ -30,10 +30,11 @@ jobs:
       run: ./gradlew build
 
     - name: Send Metrix
-      uses: yuya-takeyama/github-actions-metrics-to-datadog-action@v0.6.0
+      uses: int128/datadog-actions-metrics@v1
       with:
-          # github-token: ${{ secrets.OWNER_GITHUB_TOKEN }}
-          datadog-api-key: ${{ secrets.DATADOG_API_KEY }}
-          enable-workflow-metrics: 'true'
-          # enable-billing-metrics: 'true'
-          # enable-repository-workflows-billing-metrics: 'true'
+        # create an API key in https://docs.datadoghq.com/account_management/api-app-keys/
+        datadog-api-key: ${{ secrets.DATADOG_API_KEY }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        datadog-site: "ap1.datadoghq.com"
+        collect-job-metrics: true
+        collect-step-metrics: true
