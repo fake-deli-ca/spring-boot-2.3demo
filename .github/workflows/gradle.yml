@@ -30,5 +30,3 @@ jobs:
         # create an API key in https://docs.datadoghq.com/account_management/api-app-keys/
         datadog-api-key: ${{ secrets.DATADOG_API_KEY }}
         datadog-site: ap1.datadoghq.com
-        collect-job-metrics: true
-        collect-step-metrics: true
