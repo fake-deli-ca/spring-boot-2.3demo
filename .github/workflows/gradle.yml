@@ -28,6 +28,7 @@ jobs:
       uses: masci/datadog@v1
       with:
         api-key: ${{ secrets.DATADOG_API_KEY }}
+        api-url: "ap1.datadoghq.com"
         metrics: |
           - type: "count"
             name: "test.runs.count"
