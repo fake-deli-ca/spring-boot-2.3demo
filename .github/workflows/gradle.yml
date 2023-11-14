@@ -24,3 +24,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+
+    - uses: int128/datadog-actions-metrics@v1
+      with:
+        # create an API key in https://docs.datadoghq.com/account_management/api-app-keys/
+        datadog-api-key: ${{ secrets.DATADOG_API_KEY }}
