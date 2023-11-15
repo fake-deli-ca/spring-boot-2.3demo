@@ -3,7 +3,7 @@ on:
     workflows:
       - '**'
     branches:
-      - main
+      - master
     types:
       - completed
 
