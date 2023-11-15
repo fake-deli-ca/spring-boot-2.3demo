@@ -17,4 +17,9 @@ public class DemoApplication {
   public String hello() {
     return "hello world!";
   }
+  
+  @GetMapping("/test")
+  public Integer test() {
+    return "test";
+  }
 }
