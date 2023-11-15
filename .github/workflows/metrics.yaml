@@ -9,9 +9,20 @@ jobs:
   send:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      actions: read
+      checks: read
+      contents: read
+      
     steps:
       - uses: int128/datadog-actions-metrics@v1
         with:
           # create an API key in https://docs.datadoghq.com/account_management/api-app-keys/
           datadog-api-key: ${{ secrets.DATADOG_API_KEY }}
+          datadog-site: "ap1.datadoghq.com"
+          collect-job-metrics: true
+          collect-step-metrics: true
+           
+          # collect-job-metrics: ${{ github.event.workflow_run.head_branch == github.event.repository.default_branch }}
+          # collect-step-metrics: ${{ github.event.workflow_run.head_branch == github.event.repository.default_branch }}
           
