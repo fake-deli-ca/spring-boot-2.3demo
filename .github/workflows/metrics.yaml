@@ -2,6 +2,8 @@ on:
   workflow_run:
     workflows:
       - '**'
+    branch:
+      - main
     types:
       - completed
 
