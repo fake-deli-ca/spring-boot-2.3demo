@@ -45,6 +45,5 @@ jobs:
         datadog-api-key: ${{ secrets.DATADOG_API_KEY }}
         github-token: ${{ secrets.GITHUB_TOKEN }}
         datadog-site: "ap1.datadoghq.com"
-        collect-job-metrics: true
-        collect-step-metrics: true
-        send-pull-request-labels: true
+        collect-job-metrics: ${{ github.event.workflow_run.head_branch == github.event.repository.default_branch }}
+        collect-step-metrics: ${{ github.event.workflow_run.head_branch == github.event.repository.default_branch }}
