@@ -19,7 +19,7 @@ public class DemoApplication {
   }
   
   @GetMapping("/test")
-  public Integer test() {
+  public String test() {
     return "test";
   }
 }
