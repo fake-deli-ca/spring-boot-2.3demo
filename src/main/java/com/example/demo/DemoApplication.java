@@ -15,11 +15,6 @@ public class DemoApplication {
 
   @GetMapping("/hello")
   public String hello() {
-    return "hello world!";
-  }
-  
-  @GetMapping("/test")
-  public String test() {
-    return "test";
+    return "hello world 20231115!";
   }
 }
