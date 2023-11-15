@@ -17,4 +17,9 @@ public class DemoApplication {
   public String hello() {
     return "hello world 20231115!";
   }
+
+  @GetMapping("/test")
+  public String test() {
+    return "test";
+  }
 }
